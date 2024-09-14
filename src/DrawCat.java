@@ -16,8 +16,8 @@ public class DrawCat {
 
         int tailWidth = bodyWidth / 2;
         int tailHeight = bodyHeight / 2;
-        int tailX = bodyX - tailWidth / 2;
-        int tailY = bodyY - tailHeight / 2;
+        int tailX = bodyX;
+        int tailY = bodyY + tailHeight ;
 
         drawTail(g2d, tailX, tailY, tailWidth, tailHeight, primaryColor, secondaryColor);
         drawBody(g2d, bodyX, bodyY, bodyWidth, bodyHeight, primaryColor, secondaryColor);
@@ -27,9 +27,16 @@ public class DrawCat {
     private void drawTail(Graphics2D g2d, int tailX, int tailY, int tailWidth, int tailHeight, Color primaryColor, Color secondaryColor) {
         GeneralPath tailFull = new GeneralPath();
 
-        g2d.setColor(Color.BLACK);
-        tailFull.moveTo(tailX, tailY);
-        tailFull.curveTo(tailX, tailY, tailX - tailWidth, tailY - tailHeight, tailX - tailWidth / 2, tailY - tailHeight / 2);
+        int startX = tailX;
+        int startY = tailY;
+        int endX = startX;
+        int endY = startY + tailHeight / 8;
+
+
+
+        g2d.draw(tailFull);
+        g2d.setColor(primaryColor);
+        g2d.fill(tailFull);
     }
 
     private void drawBody(Graphics2D g2d, int bodyX, int bodyY, int bodyWidth, int bodyHeight, Color primaryColor, Color secondaryColor) {
