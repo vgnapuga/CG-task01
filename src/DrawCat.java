@@ -110,30 +110,31 @@ public class DrawCat {
         g2d.fillOval(insideColorX, insideColorY, insideColorWidth, insideColorHeight);
     }
 
-    private void drawHead(Graphics2D g2d, int x, int y, int headWidth, int headHeight, Color primaryColor, Color secondaryColor, Color eyeColor) {
-        drawEars(g2d, x, y, headWidth, headHeight, primaryColor, secondaryColor);
+    private void drawHead(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color primaryColor, Color secondaryColor, Color eyeColor) {
+        drawEars(g2d, headX, headY, headWidth, headHeight, primaryColor, secondaryColor);
 
         g2d.setColor(Color.BLACK);
-        g2d.drawRoundRect(x, y, headWidth, headHeight, 120, 120);
+        g2d.drawRoundRect(headX, headY, headWidth, headHeight, 120, 120);
         g2d.setColor(primaryColor);
-        g2d.fillRoundRect(x, y, headWidth, headHeight, 120, 120);
+        g2d.fillRoundRect(headX, headY, headWidth, headHeight, 120, 120);
 
-        drawEyes(g2d, x, y, headWidth, headHeight, eyeColor);
+        drawEyes(g2d, headX, headY, headWidth, headHeight, eyeColor);
+        drawMouth(g2d, headX, headY, headWidth, headHeight, secondaryColor);
     }
 
-    private void drawEars(Graphics2D g2d,int x, int y, int headWidth, int headHeight, Color primaryColor, Color secondaryColor) {
-        int[] leftEarX = { x + headWidth / 10,
-                x + headWidth / 9,
-                x + headWidth / 4 };
-        int[] leftEarY = { y + headHeight / 4,
-                y - headHeight / 8,
-                y + headHeight / 14 };
-        int[] rightEarX = { x + headWidth - headWidth / 10,
-                x + headWidth - headWidth / 9,
-                x + headWidth - headWidth / 4 };
-        int[] rightEarY = { y + headHeight / 4,
-                y - headHeight / 8,
-                y + headHeight / 14 };
+    private void drawEars(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color primaryColor, Color secondaryColor) {
+        int[] leftEarX = { headX + headWidth / 10,
+                headX + headWidth / 9,
+                headX + headWidth / 4 };
+        int[] leftEarY = { headY + headHeight / 4,
+                headY - headHeight / 8,
+                headY + headHeight / 14 };
+        int[] rightEarX = { headX + headWidth - headWidth / 10,
+                headX + headWidth - headWidth / 9,
+                headX + headWidth - headWidth / 4 };
+        int[] rightEarY = { headY + headHeight / 4,
+                headY - headHeight / 8,
+                headY + headHeight / 14 };
 
         drawEar(g2d, leftEarX, leftEarY, primaryColor, secondaryColor, -1);
         drawEar(g2d, rightEarX, rightEarY, primaryColor, secondaryColor, 1);
@@ -163,12 +164,12 @@ public class DrawCat {
         g2d.fillPolygon(earX, earY, 3);
     }
 
-    private void drawEyes(Graphics2D g2d, int x, int y, int headWidth, int headHeight, Color eyeColor) {
+    private void drawEyes(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color eyeColor) {
         int eyeWidth = headHeight / 5;
         int eyeHeight = headHeight / 4;
-        int rightEyeX = x + headWidth / 6;
-        int leftEyeX = x + headWidth - headWidth / 6 - eyeWidth;
-        int eyeY = y + headHeight / 3;
+        int rightEyeX = headX + headWidth / 6;
+        int leftEyeX = headX + headWidth - headWidth / 6 - eyeWidth;
+        int eyeY = headY + headHeight / 3;
 
         drawEye(g2d, rightEyeX, eyeY, eyeWidth, eyeHeight, eyeColor);
         drawEye(g2d, leftEyeX, eyeY, eyeWidth, eyeHeight, eyeColor);
@@ -187,6 +188,30 @@ public class DrawCat {
 
         g2d.setColor(Color.BLACK);
         g2d.fillOval(pupilX, pupilY, pupilWidth, pupilHeight);
+    }
+
+    private void drawMouth(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color mouthColor) {
+        GeneralPath mouth = new GeneralPath();
+
+        int mouthWidth = headWidth / 6;
+        int mouthHeight = headHeight / 6;
+
+        int mouthUpX = headX + headWidth / 2;
+        int mouthUpY = headY + headHeight / 2 + mouthHeight / 3;
+        int mouthLeftX = mouthUpX - mouthWidth / 2;
+        int mouthLeftY = mouthUpY + mouthHeight / 3;
+        int mouthRightX = mouthUpX + mouthWidth / 2;
+        int mouthRightY = mouthUpY + mouthHeight / 3;
+
+        int prefX = mouthUpX;
+        int prefY = mouthUpY + mouthHeight;
+
+        mouth.moveTo(mouthLeftX, mouthLeftY);
+        mouth.curveTo(mouthLeftX, mouthLeftY, prefX, prefY, mouthUpX, mouthUpY);
+        mouth.curveTo(mouthUpX, mouthUpY, prefX, prefY, mouthRightX, mouthRightY);
+
+        g2d.setColor(mouthColor);
+        g2d.draw(mouth);
     }
 
 }
