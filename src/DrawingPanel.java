@@ -28,7 +28,7 @@ public class DrawingPanel extends JFrame {
         g2d.fillRect(0, 0,
                 width, height);
 
-        new DrawCat(g2d, (width / 2) - 120, (height / 2) - 112,
+        new DrawCat(g2d, (width / 2) - 135, (height / 2) - 112,
                 1200, 800,
                 Color.BLACK, Color.WHITE, Color.CYAN);
     }
