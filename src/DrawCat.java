@@ -14,10 +14,10 @@ public class DrawCat {
         int bodyX = headX + headWidth / 4;
         int bodyY = headY + headHeight - bodyHeight / 5;
 
-        int tailWidth = bodyWidth / 2;
-        int tailHeight = bodyHeight / 2;
+        int tailWidth = bodyWidth;
+        int tailHeight = tailWidth;
         int tailX = bodyX;
-        int tailY = bodyY + tailHeight ;
+        int tailY = bodyY + bodyHeight / 2 - bodyHeight / 18;
 
         drawTail(g2d, tailX, tailY, tailWidth, tailHeight, primaryColor, secondaryColor);
         drawBody(g2d, bodyX, bodyY, bodyWidth, bodyHeight, primaryColor, secondaryColor);
@@ -25,18 +25,72 @@ public class DrawCat {
     }
 
     private void drawTail(Graphics2D g2d, int tailX, int tailY, int tailWidth, int tailHeight, Color primaryColor, Color secondaryColor) {
-        GeneralPath tailFull = new GeneralPath();
+        GeneralPath tail = new GeneralPath();
 
         int startX = tailX;
         int startY = tailY;
         int endX = startX;
-        int endY = startY + tailHeight / 8;
+        int endY = startY - tailHeight / 8;
 
+        int firstX = startX - tailWidth / 8;
+        int firstY = startY;
+        int secondX = firstX - tailWidth / 8;
+        int secondY = firstY - tailHeight / 8;
+        int thirdX = secondX;
+        int thirdY = secondY - tailHeight / 2;
+        int fourthX = thirdX - tailWidth / 8;
+        int fourthY = thirdY - tailHeight / 8;
+        int fifthX = fourthX;
+        int fifthY = fourthY - tailHeight / 8;
+        int sixthX = fifthX + tailWidth / 8;
+        int sixthY = fifthY;
+        int seventhX = sixthX + tailWidth / 8;
+        int seventhY = sixthY + tailHeight / 8;
+        int eightthX = seventhX;
+        int eightthY = seventhY + tailHeight / 2;
 
+        int prefFirstX = secondX;
+        int prefFirstY = firstY;
+        int prefSecondX = thirdX;
+        int prefSecondY = fourthY;
+        int prefThirdX = fourthX - tailWidth / 8;
+        int prefThirdY = fourthY - tailHeight / 16;
+        int prefFourthX = seventhX;
+        int prefFourthY = sixthY;
+        int prefFifthX = eightthX;
+        int prefFifthY = secondY;
 
-        g2d.draw(tailFull);
+        tail.moveTo(startX, startY);
+        tail.lineTo(firstX, firstY);
+        tail.curveTo(firstX, firstY, prefFirstX, prefFirstY, secondX, secondY);
+        tail.lineTo(thirdX, thirdY);
+        tail.curveTo(thirdX, thirdY, prefSecondX, prefSecondY, fourthX, fourthY);
+        tail.curveTo(fourthX, fourthY, prefThirdX, prefThirdY, fifthX, fifthY);
+        tail.lineTo(sixthX, sixthY);
+        tail.curveTo(sixthX, sixthY, prefFourthX, prefFourthY, seventhX, seventhY);
+        tail.lineTo(eightthX, eightthY);
+        tail.curveTo(eightthX, eightthY, prefFifthX, prefFifthY, endX, endY);
+        tail.closePath();
+
+        g2d.setColor(Color.BLACK);
+        g2d.draw(tail);
         g2d.setColor(primaryColor);
-        g2d.fill(tailFull);
+        g2d.fill(tail);
+
+        drawEndOfTail(g2d, fourthX, fourthY, prefThirdX, prefThirdY, fifthX, fifthY, secondaryColor);
+    }
+
+    private void drawEndOfTail(Graphics2D g2d, int x1, int y1, int x2, int y2, int x3, int y3, Color secondaryColor) {
+        GeneralPath endOfTail = new GeneralPath();
+
+        endOfTail.moveTo(x1, y1);
+        endOfTail.curveTo(x1, y1, x2, y2, x3, y3);
+        endOfTail.closePath();
+
+        g2d.setColor(Color.BLACK);
+        g2d.draw(endOfTail);
+        g2d.setColor(secondaryColor);
+        g2d.fill(endOfTail);
     }
 
     private void drawBody(Graphics2D g2d, int bodyX, int bodyY, int bodyWidth, int bodyHeight, Color primaryColor, Color secondaryColor) {
