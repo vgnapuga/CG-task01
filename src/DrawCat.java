@@ -114,9 +114,9 @@ public class DrawCat {
         drawEars(g2d, headX, headY, headWidth, headHeight, primaryColor, secondaryColor);
 
         g2d.setColor(Color.BLACK);
-        g2d.drawRoundRect(headX, headY, headWidth, headHeight, 120, 120);
+        g2d.drawRoundRect(headX, headY, headWidth, headHeight, 220, 220);
         g2d.setColor(primaryColor);
-        g2d.fillRoundRect(headX, headY, headWidth, headHeight, 120, 120);
+        g2d.fillRoundRect(headX, headY, headWidth, headHeight, 220, 220);
 
         drawEyes(g2d, headX, headY, headWidth, headHeight, eyeColor);
         drawMouth(g2d, headX, headY, headWidth, headHeight, secondaryColor);
