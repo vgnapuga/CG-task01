@@ -24,13 +24,14 @@ public class DrawingPanel extends JFrame {
         final int width = getWidth();
         final int height = getHeight();
 
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0,
-                width, height);
+        Color eyeColor = new Color(255, 215, 0);
+
+        new DrawBackground(g2d, 0, 0,
+                getWidth(), getHeight());
 
         new DrawCat(g2d, (width / 2) - 135, (height / 2) - 112,
                 1200, 800,
-                Color.BLACK, Color.WHITE, Color.CYAN);
+                Color.BLACK, Color.WHITE, eyeColor);
     }
 
 }
