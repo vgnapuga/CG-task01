@@ -24,14 +24,17 @@ public class DrawingPanel extends JFrame {
         final int width = getWidth();
         final int height = getHeight();
 
-        Color eyeColor = new Color(255, 215, 0);
+        Color catColor1 = Color.BLACK;
+        Color eyeColor1 = new Color(255, 215, 0);
+        Color catColor2 = Color.ORANGE;
+        Color eyeColor2 = Color.CYAN;
 
         new DrawBackground(g2d, 0, 0,
                 getWidth(), getHeight());
 
         new DrawCat(g2d, (width / 2) - 135, (height / 2) - 112,
                 1200, 800,
-                Color.BLACK, Color.WHITE, eyeColor);
+                catColor1, Color.WHITE, eyeColor1);
     }
 
 }
