@@ -19,9 +19,15 @@ public class DrawCat {
         int tailX = bodyX + bodyWidth / 50;
         int tailY = bodyY + bodyHeight / 2 - bodyHeight / 18;
 
-        drawTail(g2d, tailX, tailY, tailWidth, tailHeight, primaryColor, secondaryColor);
-        drawBody(g2d, bodyX, bodyY, bodyWidth, bodyHeight, primaryColor, secondaryColor);
-        drawHead(g2d, headX, headY, headWidth, headHeight, primaryColor, secondaryColor, eyeColor);
+        drawTail(g2d, tailX, tailY,
+                tailWidth, tailHeight,
+                primaryColor, secondaryColor);
+        drawBody(g2d, bodyX, bodyY,
+                bodyWidth, bodyHeight,
+                primaryColor, secondaryColor);
+        drawHead(g2d, headX, headY,
+                headWidth, headHeight,
+                primaryColor, secondaryColor, eyeColor);
     }
 
     private void drawTail(Graphics2D g2d, int tailX, int tailY, int tailWidth, int tailHeight, Color primaryColor, Color secondaryColor) {
@@ -62,14 +68,24 @@ public class DrawCat {
 
         tail.moveTo(startX, startY);
         tail.lineTo(firstX, firstY);
-        tail.curveTo(firstX, firstY, prefFirstX, prefFirstY, secondX, secondY);
+        tail.curveTo(firstX, firstY,
+                prefFirstX, prefFirstY,
+                secondX, secondY);
         tail.lineTo(thirdX, thirdY);
-        tail.curveTo(thirdX, thirdY, prefSecondX, prefSecondY, fourthX, fourthY);
-        tail.curveTo(fourthX, fourthY, prefThirdX, prefThirdY, fifthX, fifthY);
+        tail.curveTo(thirdX, thirdY,
+                prefSecondX, prefSecondY,
+                fourthX, fourthY);
+        tail.curveTo(fourthX, fourthY,
+                prefThirdX, prefThirdY,
+                fifthX, fifthY);
         tail.lineTo(sixthX, sixthY);
-        tail.curveTo(sixthX, sixthY, prefFourthX, prefFourthY, seventhX, seventhY);
+        tail.curveTo(sixthX, sixthY,
+                prefFourthX, prefFourthY,
+                seventhX, seventhY);
         tail.lineTo(eightthX, eightthY);
-        tail.curveTo(eightthX, eightthY, prefFifthX, prefFifthY, endX, endY);
+        tail.curveTo(eightthX, eightthY,
+                prefFifthX, prefFifthY,
+                endX, endY);
         tail.closePath();
 
 //        g2d.setColor(Color.BLACK);
@@ -77,7 +93,9 @@ public class DrawCat {
         g2d.setColor(primaryColor);
         g2d.fill(tail);
 
-        drawEndOfTail(g2d, fourthX, fourthY, prefThirdX, prefThirdY, fifthX, fifthY, secondaryColor);
+        drawEndOfTail(g2d, fourthX, fourthY,
+                prefThirdX, prefThirdY,
+                fifthX, fifthY, secondaryColor);
     }
 
     private void drawEndOfTail(Graphics2D g2d, int x1, int y1, int x2, int y2, int x3, int y3, Color secondaryColor) {
@@ -107,19 +125,26 @@ public class DrawCat {
 //        g2d.setColor(Color.BLACK);
 //        g2d.drawOval(insideColorX, insideColorY, insideColorWidth, insideColorHeight);
         g2d.setColor(secondaryColor);
-        g2d.fillOval(insideColorX, insideColorY, insideColorWidth, insideColorHeight);
+        g2d.fillOval(insideColorX, insideColorY,
+                insideColorWidth, insideColorHeight);
     }
 
     private void drawHead(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color primaryColor, Color secondaryColor, Color eyeColor) {
-        drawEars(g2d, headX, headY, headWidth, headHeight, primaryColor, secondaryColor);
+        drawEars(g2d, headX, headY,
+                headWidth, headHeight,
+                primaryColor, secondaryColor);
 
 //        g2d.setColor(Color.BLACK);
 //        g2d.drawRoundRect(headX, headY, headWidth, headHeight, 220, 220);
         g2d.setColor(primaryColor);
-        g2d.fillRoundRect(headX, headY, headWidth, headHeight, 220, 220);
+        g2d.fillRoundRect(headX, headY,
+                headWidth, headHeight,
+                220, 220);
 
-        drawEyes(g2d, headX, headY, headWidth, headHeight, eyeColor);
-        drawMouth(g2d, headX, headY, headWidth, headHeight, secondaryColor);
+        drawEyes(g2d, headX, headY,
+                headWidth, headHeight, eyeColor);
+        drawMouth(g2d, headX, headY,
+                headWidth, headHeight, secondaryColor);
     }
 
     private void drawEars(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color primaryColor, Color secondaryColor) {
@@ -136,8 +161,10 @@ public class DrawCat {
                 headY - headHeight / 8,
                 headY + headHeight / 14 };
 
-        drawEar(g2d, leftEarX, leftEarY, primaryColor, secondaryColor, -1);
-        drawEar(g2d, rightEarX, rightEarY, primaryColor, secondaryColor, 1);
+        drawEar(g2d, leftEarX, leftEarY,
+                primaryColor, secondaryColor, -1);
+        drawEar(g2d, rightEarX, rightEarY,
+                primaryColor, secondaryColor, 1);
     }
 
     private void drawEar(Graphics2D g2d, int[] earX, int[] earY, Color primaryColor, Color secondaryColor, int side) {
@@ -171,15 +198,18 @@ public class DrawCat {
         int leftEyeX = headX + headWidth - headWidth / 6 - eyeWidth;
         int eyeY = headY + headHeight / 3;
 
-        drawEye(g2d, rightEyeX, eyeY, eyeWidth, eyeHeight, eyeColor);
-        drawEye(g2d, leftEyeX, eyeY, eyeWidth, eyeHeight, eyeColor);
+        drawEye(g2d, rightEyeX, eyeY,
+                eyeWidth, eyeHeight, eyeColor);
+        drawEye(g2d, leftEyeX, eyeY,
+                eyeWidth, eyeHeight, eyeColor);
     }
 
     private void drawEye(Graphics2D g2d, int eyeX, int eyeY, int eyeWidth, int eyeHeight, Color eyeColor) {
 //        g2d.setColor(Color.BLACK);
 //        g2d.drawOval(eyeX, eyeY, eyeWidth, eyeHeight);
         g2d.setColor(eyeColor);
-        g2d.fillOval(eyeX, eyeY, eyeWidth, eyeHeight);
+        g2d.fillOval(eyeX, eyeY,
+                eyeWidth, eyeHeight);
 
         int pupilX = eyeX + eyeWidth / 4;
         int pupilY = eyeY + eyeHeight / 4;
@@ -187,7 +217,8 @@ public class DrawCat {
         int pupilHeight = eyeHeight / 2;
 
         g2d.setColor(Color.BLACK);
-        g2d.fillOval(pupilX, pupilY, pupilWidth, pupilHeight);
+        g2d.fillOval(pupilX, pupilY,
+                pupilWidth, pupilHeight);
     }
 
     private void drawMouth(Graphics2D g2d, int headX, int headY, int headWidth, int headHeight, Color mouthColor) {
@@ -207,8 +238,12 @@ public class DrawCat {
         int prefY = mouthUpY + mouthHeight;
 
         mouth.moveTo(mouthLeftX, mouthLeftY);
-        mouth.curveTo(mouthLeftX, mouthLeftY, prefX, prefY, mouthUpX, mouthUpY);
-        mouth.curveTo(mouthUpX, mouthUpY, prefX, prefY, mouthRightX, mouthRightY);
+        mouth.curveTo(mouthLeftX, mouthLeftY,
+                prefX, prefY,
+                mouthUpX, mouthUpY);
+        mouth.curveTo(mouthUpX, mouthUpY,
+                prefX, prefY,
+                mouthRightX, mouthRightY);
 
         g2d.setColor(mouthColor);
         g2d.draw(mouth);
